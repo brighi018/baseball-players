@@ -41,7 +41,7 @@ class Player(models.Model):
 
     # todo: make async
     def get_pitching_statistics(self):
-        return PitchingStatistics.objects.filter(player=self).order_by('year')
+        return PitchingStatistics.objects.filter(player=self).order_by('-year')
 
 class BattingStatistics(models.Model):
     player = models.ForeignKey(Player, on_delete=models.PROTECT)
