@@ -1,0 +1,68 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+  <link rel="stylesheet" href="{% static 'players.css' %}">
+  <head>
+    <meta charset="utf-8" />
+    <title>Team: {{ team.org_abbreviation }}</title>
+  </head>
+  <body>
+    <div class="header">{{ team.org_abbreviation }}</div>
+    <div class="team-page">
+      <div class="sidebar">
+        <div class="button" onclick=window.location.href="{% url 'players:index' %}">
+          {{ '<' }} Home
+        </div>
+      </div>
+      <div class="content">
+        <div class="subheader">Current Players</div>
+        <div class="current-players">
+        {% for player in team.get_team_players %}
+          <div class="player-card">
+            <div class="button" onclick=window.location.href="{% url 'players:player' player.id %}">
+              {{ player.name_last }}, {{ player.name_use }}
+            </div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>DOB</td>
+                  <td>{{ player.birth_date }}</td>
+                </tr>
+                <tr>
+                  <td>Height</td>
+                  <td>{{ player.height_feet }}' {{ player.height_inches }}</td>
+                </tr>
+                <tr>
+                  <td>Weight</td>
+                  <td>{{ player.weight }} lbs</td>
+                </tr>
+                <tr>
+                  <td>Throws</td>
+                  <td>{{ player.throws }}</td>
+                </tr>
+                <tr>
+                  <td>Bats</td>
+                  <td>{{ player.bats }}</td>
+                </tr>
+                <tr>
+                  <td>Primary Position</td>
+                  <td>{{ player.primary_position }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- <ul>
+    {% for player in team.get_team_players %}
+        <li>
+            <a href="{% url 'players:player' player.id %}">
+                {{ player.name_last }}, {{ player.name_use }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul> -->
+  </body>
+</html>

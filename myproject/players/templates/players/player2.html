@@ -1,0 +1,15 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+  <link rel="stylesheet" href="{% static 'players.css' %}">
+  <head>
+    <meta charset="utf-8" />
+    <title>Player 2</title>
+  </head>
+  <body>
+    {{ message }}
+    <!-- {{ other_message|safe }} -->
+      {{ other_view.content|safe }}
+      {{ test }}
+  </body>
+</html>

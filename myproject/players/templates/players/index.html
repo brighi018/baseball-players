@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+  <link rel="stylesheet" href="{% static 'players.css' %}">
+  <head>
+    <meta charset="utf-8" />
+    <title>Baseball</title>
+  </head>
+  <body>
+    <div class="header">Baseball</div>
+    <div class="home-page">
+      <div class="content">
+      {% if team_list %}
+        <div class="subheader">Teams</div>
+        {% for team in team_list %}
+          <div class="button" onclick=window.location.href="{% url 'players:team' team.id %}">{{ team.org_abbreviation }}</div>
+        {% endfor %}
+      {% else %}
+        <p>No teams are available.</p>
+      {% endif %}
+      </div>
+    </div>
+    <!-- {% if team_list %}
+        <ul>
+        {% for team in team_list %}
+            <li><a href="{% url 'players:team' team.id %}">{{ team.org_abbreviation }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No teams are available.</p>
+    {% endif %} -->
+  </body>
+</html>

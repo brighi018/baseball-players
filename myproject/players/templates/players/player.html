@@ -1,0 +1,169 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+  <link rel="stylesheet" href="{% static 'players.css' %}">
+  <head>
+    <meta charset="utf-8" />
+    <title>Player: {{ player.name_last }}, {{ player.name_use }}</title>
+  </head>
+  <body>
+    <div class="header">{{ player.name_last }}, {{ player.name_use }}</div>
+    <div class="player-page">
+      <div class="sidebar">
+        <div class="button" onclick=window.location.href="{% url 'players:team' player.team.id %}">
+          {{ '<' }} {{ player.team.org_abbreviation }}
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td>First Name</td>
+              <td>{{ player.name_first }}</td>
+            </tr>
+            <tr>
+              <td>Nickname</td>
+              <td>{{ player.name_use }}</td>
+            </tr>
+            <tr>
+              <td>Last Name</td>
+              <td>{{ player.name_last }}</td>
+            </tr>
+            <tr>
+              <td>Current Team</td>
+              <td>{{ player.team.org_abbreviation }}</td>
+            </tr>
+            <tr>
+              <td>DOB</td>
+              <td>{{ player.birth_date }}</td>
+            </tr>
+            <tr>
+              <td>Height</td>
+              <td>{{ player.height_feet }}' {{ player.height_inches }}</td>
+            </tr>
+            <tr>
+              <td>Weight</td>
+              <td>{{ player.weight }} lbs</td>
+            </tr>
+            <tr>
+              <td>Throws</td>
+              <td>{{ player.throws }}</td>
+            </tr>
+            <tr>
+              <td>Bats</td>
+              <td>{{ player.bats }}</td>
+            </tr>
+            <tr>
+              <td>Primary Position</td>
+              <td>{{ player.primary_position }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="content">
+        <div class="batting-statistics">
+          <div class="subheader">Batting Statistics</div>
+          <table>
+            <thead>
+              <tr>
+                <td>Year</td>
+                <td>League</td>
+                <td>Team</td>
+                <td>PA</td>
+                <td>AB</td>
+                <td>G</td>
+                <td>GS</td>
+                <td>R</td>
+                <td>H</td>
+                <td>2B</td>
+                <td>3B</td>
+                <td>HR</td>
+                <td>BB</td>
+                <td>K</td>
+                <td>SAC</td>
+                <td>SF</td>
+                <td>SB</td>
+                <td>CS</td>
+              </tr>
+            </thead>
+            <tbody>
+            {% for stat_row in player.get_batting_statistics %}
+              <tr>
+                <td>{{ stat_row.year }}</td>
+                <td>{{ stat_row.league }}</td>
+                <td>{{ stat_row.org_abbreviation }}</td>
+                <td>{{ stat_row.plate_appearances }}</td>
+                <td>{{ stat_row.at_bats }}</td>
+                <td>{{ stat_row.games }}</td>
+                <td>{{ stat_row.games_started }}</td>
+                <td>{{ stat_row.runs }}</td>
+                <td>{{ stat_row.hits }}</td>
+                <td>{{ stat_row.doubles }}</td>
+                <td>{{ stat_row.triples }}</td>
+                <td>{{ stat_row.home_runs }}</td>
+                <td>{{ stat_row.bases_on_balls }}</td>
+                <td>{{ stat_row.strikeouts }}</td>
+                <td>{{ stat_row.sacrifices }}</td>
+                <td>{{ stat_row.sacrifice_flies }}</td>
+                <td>{{ stat_row.stolen_bases }}</td>
+                <td>{{ stat_row.caught_stealing }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="pitching-statistics">
+          <div class="subheader">Pitching Statistics</div>
+          <table>
+            <thead>
+              <tr>
+                <td>Year</td>
+                <td>League</td>
+                <td>Team</td>
+                <td>G</td>
+                <td>GS</td>
+                <td>CG</td>
+                <td>GF</td>
+                <td>IP</td>
+                <td>W</td>
+                <td>L</td>
+                <td>SV</td>
+                <td>BF</td>
+                <td>AB</td>
+                <td>H</td>
+                <td>2B</td>
+                <td>3B</td>
+                <td>HR</td>
+                <td>BB</td>
+                <td>K</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for stat_row in player.get_batting_statistics %}
+              <tr>
+                <td>{{ stat_row.year }}</td>
+                <td>{{ stat_row.league }}</td>
+                <td>{{ stat_row.org_abbreviation }}</td>
+                <td>{{ stat_row.games }}</td>
+                <td>{{ stat_row.games_started }}</td>
+                <td>{{ stat_row.complete_games }}</td>
+                <td>{{ stat_row.games_finished }}</td>
+                <td>{{ stat_row.innings_pitched }}</td>
+                <td>{{ stat_row.wins }}</td>
+                <td>{{ stat_row.losses }}</td>
+                <td>{{ stat_row.saves }}</td>
+                <td>{{ stat_row.total_batters_faced }}</td>
+                <td>{{ stat_row.at_bats }}</td>
+                <td>{{ stat_row.hits }}</td>
+                <td>{{ stat_row.doubles }}</td>
+                <td>{{ stat_row.triples }}</td>
+                <td>{{ stat_row.home_runs }}</td>
+                <td>{{ stat_row.bases_on_balls }}</td>
+                <td>{{ stat_row.strikeouts }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
