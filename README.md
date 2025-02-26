@@ -15,7 +15,8 @@ $ sudo apt install python3-django
 - run `python3 manage.py migrate`
 - import the players by running `python3 manage.py shell < importPlayers.py`
 - run `python3 manage.py runserver` to start the app
-- the imported data should be available to manage in the admin site at http://127.0.0.1:8000/admin
+- create a super user with `python3 manage.py createsuperuser`
+- the imported data should be available to manage in the Django-project-generated admin site at http://127.0.0.1:8000/admin
 - navigate to http://127.0.0.1:8000/players/ to view the app on the homepage
 
 # Project Timeline
@@ -32,7 +33,7 @@ $ sudo apt install python3-django
     - tried to make async views
     - tried to make async model methods
 
-# Tutorial Notes
+# Tutorial Notes (for myself)
 https://docs.djangoproject.com/en/5.1/intro/tutorial01/
 ## Basic Setup (35 min)
 ```
